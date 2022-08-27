@@ -99,6 +99,7 @@ function App() {
           </p>
         </>
       )}
+      <p style={{marginTop: "8px"}}><em>※This App is compliant for PWA, you can install in Home screen.</em></p>
     </div>
   )
 }
