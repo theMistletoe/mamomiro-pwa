@@ -68,7 +68,7 @@ function App() {
           <textarea style={
             {
               width: "18rem",
-              height: "12rem",
+              height: "8rem",
             }
           } placeholder='memo something' value={input} onChange={(e) => setInput(e.target.value)} />
         </div>
