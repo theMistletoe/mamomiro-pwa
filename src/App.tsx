@@ -1,32 +1,100 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import { useLocalStorage } from './hooks/useLocalStorage';
+import Settings from './Settings';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isVisibleSetting, setIsVisibleSetting] = useState(false);
+  const [boardId, setBoardId] = useLocalStorage<string>("boardId", "");
+  const [accessToken, setAccessToken] = useLocalStorage<string>("accessToken", "");
+
+  const isSettingEmpty = () => boardId.length === 0 || accessToken.length === 0;
+
+  useEffect(() => {
+    if (isSettingEmpty()) setIsVisibleSetting(true);
+  }, [])
+
+  const toggleVisibleSetting = () => setIsVisibleSetting(!isVisibleSetting);
+
+  const handleClickButton = (e: any) => {
+    e.preventDefault();
+    if (isSettingEmpty()) return alert('You setup first!');
+    if (input.length === 0) return alert('input something!');
+    
+    const data = {
+      "data": {
+        "content": input,
+        "shape": "square"
+          },
+          "position": {
+            "origin": "center",
+            "x": 0,
+            "y": 0
+      }
+    };
+        
+    setIsLoading(true);
+    fetch(`https://api.miro.com/v2/boards/${boardId}/sticky_notes`, {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      alert('POST Succeed');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    })
+    .finally(() => {
+      setIsLoading(false);
+      setInput('');
+    });
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div style={{width: "full"}} className="App">
+      <h1>memomiro</h1>
+      <p>Memo on Miro, easier!</p>
+      <form action="*" method="POST" onSubmit={handleClickButton}>
+        <div>
+          <textarea style={
+            {
+              width: "18rem",
+              height: "12rem",
+            }
+          } placeholder='memo something' value={input} onChange={(e) => setInput(e.target.value)} />
+        </div>
+        <div>
+          <button onClick={handleClickButton} disabled={isLoading}>Memo!</button>
+        </div>
+      </form>
+      <hr style={{margin:"0.5rem"}} />
+      <button onClick={() => toggleVisibleSetting()}>{isSettingEmpty() ? "You setup first!" : "Show Setting"}</button>
+      {isVisibleSetting && (
+        <>
+          <Settings boardId={boardId} accessToken={accessToken} setBoardId={(e) => setBoardId(e.target.value)} setAccessToken={(e) => setAccessToken(e.target.value)}  />
+          <h3>How to Setup</h3>
+          <ol>
+            <li>You can get access_token according to below links.</li>
+            <ol type='i'>
+              <li><a href='https://developers.miro.com/docs/try-out-the-rest-api-in-less-than-3-minutes'>Video: try the REST API in less than 3 minutes</a></li>
+              <li><a href='https://developers.miro.com/docs/rest-api-build-your-first-hello-world-app'>Quickstart</a></li>
+            </ol>
+            <li>You can get board_id from url you want use Miro's board.<br/>
+                ex:) https://miro.com/app/board/<b>[board_id is here]</b>/
+            </li>
+            <li>After that, input something and Click "Memo!", you can make sticky notes on your miro!</li>
+          </ol>
+        </>
+      )}
     </div>
   )
 }
