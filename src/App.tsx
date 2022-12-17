@@ -95,21 +95,12 @@ function App() {
           }}>
             <Settings boardId={boardId} accessToken={accessToken} setBoardId={(e) => setBoardId(e.target.value)} setAccessToken={(e) => setAccessToken(e.target.value)}  />
             <h3>How to Setup</h3>
-            <ol>
-              <li>You can get access_token according to below links.</li>
-              <ol type='i'>
-                <li><a href='https://developers.miro.com/docs/try-out-the-rest-api-in-less-than-3-minutes'>Video: try the REST API in less than 3 minutes</a></li>
-                <li><a href='https://developers.miro.com/docs/rest-api-build-your-first-hello-world-app'>Quickstart</a></li>
-              </ol>
-              <li>You can get board_id from url you want use Miro's board.<br/>
-                  ex:) https://miro.com/app/board/<b>[board_id is here]</b>/
-              </li>
-              <li>After that, input something and Click "Memo!", you can make sticky notes on your miro!</li>
-            </ol>
+            <p><a href='https://www.notion.so/Memomiro-Wiki-a27ce4bf4c93477f9c123e844d20db8a'>Check Wiki Page!</a></p>
           </p>
         </>
       )}
       <p style={{marginTop: "8px"}}><em>※This App is compliant for PWA, you can install in Home screen.</em></p>
+      <footer>@2022 <a href='https://github.com/theMistletoe'>theMistletoe</a> All Right Reserved.</footer>
     </div>
   )
 }
