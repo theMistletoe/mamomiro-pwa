@@ -55,6 +55,7 @@ function App() {
     })
     .catch((error) => {
       console.error('Error:', error);
+      alert('Some Errors occured.');
     })
     .finally(() => {
       setIsLoading(false);
@@ -65,7 +66,7 @@ function App() {
   return (
     <div style={{width: "full"}} className="App">
       <h1>memomiro</h1>
-      <p>Memo on Miro, easier!</p>
+      <p>速攻でMiroにメモろう!</p>
       <form action="*" method="POST" onSubmit={handleClickButton}>
         <div>
           <textarea style={
@@ -73,12 +74,18 @@ function App() {
               width: "18rem",
               height: "8rem",
             }
-          } placeholder='memo something' value={input} onChange={(e) => setInput(e.target.value)} />
+          } placeholder='メモする内容を入力' value={input} onChange={(e) => setInput(e.target.value)} />
         </div>
         <div>
-          <button onClick={handleClickButton} disabled={isLoading}>Memo!</button>
+          <button style={{
+            "fontWeight": "bold",
+            "fontSize": "24px"
+          }} onClick={handleClickButton} disabled={isLoading}>Memo!</button>
         </div>
       </form>
+      <p style={{
+            "fontSize": "12px"
+          }}>※初めての方は<a href='https://www.notion.so/Memomiro-Wiki-a27ce4bf4c93477f9c123e844d20db8a'>Wiki</a>をご覧ください！</p>
       <hr style={{margin:"0.5rem"}} />
       <button
         style={isSettingEmpty() ? {
@@ -94,12 +101,12 @@ function App() {
             textAlign: "left",
           }}>
             <Settings boardId={boardId} accessToken={accessToken} setBoardId={(e) => setBoardId(e.target.value)} setAccessToken={(e) => setAccessToken(e.target.value)}  />
-            <h3>How to Setup</h3>
-            <p><a href='https://www.notion.so/Memomiro-Wiki-a27ce4bf4c93477f9c123e844d20db8a'>Check Wiki Page!</a></p>
+            <h3>はじめ方</h3>
+            <p><a href='https://www.notion.so/Memomiro-Wiki-a27ce4bf4c93477f9c123e844d20db8a'>Wiki</a>をご覧ください！</p>
           </p>
         </>
       )}
-      <p style={{marginTop: "8px"}}><em>※This App is compliant for PWA, you can install in Home screen.</em></p>
+      <p style={{marginTop: "8px"}}><em>※このページはPWAに対応しており、スマホにインストールすることができます。</em></p>
       <footer>@2022 <a href='https://github.com/theMistletoe'>theMistletoe</a> All Right Reserved.</footer>
     </div>
   )
