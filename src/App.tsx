@@ -85,7 +85,7 @@ function App() {
       </form>
       <p style={{
             "fontSize": "12px"
-          }}>※初めての方は<a href='https://www.notion.so/Memomiro-Wiki-a27ce4bf4c93477f9c123e844d20db8a'>Wiki</a>をご覧ください！</p>
+          }}>※初めての方は<a href='https://www.notion.so/Memomiro-Wiki-a27ce4bf4c93477f9c123e844d20db8a' target="_blank">Wiki</a>をご覧ください！</p>
       <hr style={{margin:"0.5rem"}} />
       <button
         style={isSettingEmpty() ? {
@@ -102,12 +102,12 @@ function App() {
           }}>
             <Settings boardId={boardId} accessToken={accessToken} setBoardId={(e) => setBoardId(e.target.value)} setAccessToken={(e) => setAccessToken(e.target.value)}  />
             <h3>はじめ方</h3>
-            <p><a href='https://www.notion.so/Memomiro-Wiki-a27ce4bf4c93477f9c123e844d20db8a'>Wiki</a>をご覧ください！</p>
+            <p><a href='https://www.notion.so/Memomiro-Wiki-a27ce4bf4c93477f9c123e844d20db8a' target="_blank">Wiki</a>をご覧ください！</p>
           </p>
         </>
       )}
       <p style={{marginTop: "8px"}}><em>※このページはPWAに対応しており、スマホにインストールすることができます。</em></p>
-      <footer style={{marginTop: "64px"}}>@2022 <a href='https://github.com/theMistletoe'>theMistletoe</a> All Right Reserved.</footer>
+      <footer style={{marginTop: "64px"}}>@2022 <a href='https://github.com/theMistletoe' target="_blank">theMistletoe</a> All Right Reserved.</footer>
     </div>
   )
 }
