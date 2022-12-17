@@ -80,7 +80,14 @@ function App() {
         </div>
       </form>
       <hr style={{margin:"0.5rem"}} />
-      <button onClick={() => toggleVisibleSetting()}>{isSettingEmpty() ? "You setup first!" : "Show Setting"}</button>
+      <button
+        style={isSettingEmpty() ? {
+          color: "red"
+        } : {}}
+        onClick={() => toggleVisibleSetting()}
+      >
+          {isSettingEmpty() ? "↓You setup first!↓" : "Show Setting"}
+      </button>
       {isVisibleSetting && (
         <>
           <p style={{
