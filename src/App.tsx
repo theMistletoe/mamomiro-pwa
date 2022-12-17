@@ -34,9 +34,12 @@ function App() {
             "y": 0
       }
     };
+
+    // https://miro.com/app/board/uXjVP-OfE4I=/ からboardIdを抽出する
+    const extractedBoardId = boardId.split("/")[5];
         
     setIsLoading(true);
-    fetch(`https://api.miro.com/v2/boards/${boardId}/sticky_notes`, {
+    fetch(`https://api.miro.com/v2/boards/${extractedBoardId}/sticky_notes`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

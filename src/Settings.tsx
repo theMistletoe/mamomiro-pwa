@@ -13,7 +13,7 @@ function Settings(props: Props) {
     return (
         <form>
             <div>
-                <label>Miro's board_id
+                <label>Miro's board URL
                     <input
                         type="text"
                         placeholder="Enter board_id"
