@@ -64,7 +64,7 @@ function App() {
   }
 
   return (
-    <div style={{width: "full"}} className="App">
+    <div style={{width: "full", height: "full"}} className="App">
       <h1>memomiro</h1>
       <p>速攻でMiroにメモろう!</p>
       <form action="*" method="POST" onSubmit={handleClickButton}>
@@ -107,7 +107,7 @@ function App() {
         </>
       )}
       <p style={{marginTop: "8px"}}><em>※このページはPWAに対応しており、スマホにインストールすることができます。</em></p>
-      <footer>@2022 <a href='https://github.com/theMistletoe'>theMistletoe</a> All Right Reserved.</footer>
+      <footer style={{marginTop: "64px"}}>@2022 <a href='https://github.com/theMistletoe'>theMistletoe</a> All Right Reserved.</footer>
     </div>
   )
 }
