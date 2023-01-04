@@ -74,7 +74,7 @@ function App() {
               width: "18rem",
               height: "8rem",
             }
-          } placeholder='メモする内容を入力' value={input} onChange={(e) => setInput(e.target.value)} />
+          } placeholder='メモする内容を入力' value={input} onChange={(e) => setInput(e.target.value)} autoFocus={!isSettingEmpty()} />
         </div>
         <div>
           <button style={{
