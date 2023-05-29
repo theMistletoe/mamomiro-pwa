@@ -16,7 +16,7 @@ function Settings(props: Props) {
                 <label>Miro's board URL
                     <input
                         type="text"
-                        placeholder="Enter board_id"
+                        placeholder="Enter Miro's board URL"
                         value={boardId}
                         onChange={setBoardId}
                         />
